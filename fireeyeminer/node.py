@@ -14,12 +14,13 @@ class urllistMiner(BasePollerFT):
         self.polling_timeout = self.config.get('polling_timeout', 20)
         self.verify_cert = self.config.get('verify_cert', True)
 
-        self.fireeye_nx = self.config.get('fireeye_nx', None)
-        if self.fireeye_nx is None:
+        self.fireeye_fqdn = self.config.get('fireeye_fqdn', None)
+        if self.fireeye_fqdn is None:
             raise ValueError('%s - Fireeye NX/CMS URL is required' % self.name)
 
-        self.url = 'http://%s/URLlist.txt' & (self.fireeye_nx)
-        self.url = 'http://www.edfauler.com/urllist.txt'
+        self.url = 'http://{}/urllist.txt'.format(
+            self.fireeye_fqdn
+        )
 
     def _build_iterator(self, item):
         callbacks = []
@@ -47,7 +48,7 @@ class urllistMiner(BasePollerFT):
 
         # parse the page
         r = r.text.split('\n')
-        
+
         for line in r:
             line = line.rstrip('\r\n')
             if "End" in line:
@@ -66,7 +67,7 @@ class urllistMiner(BasePollerFT):
             if "define condition FireEye_MaliciousURL" in line:
                 malicious_sw = 1
         return callbacks
-    
+
     def _process_item(self, item):
         mycallback = item
         if mycallback is None:

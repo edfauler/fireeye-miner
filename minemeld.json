@@ -1,9 +1,9 @@
 {
-    "version": "0.3",
+    "version": "0.1",
     "name": "fireeye-miner",
     "author": "Michael Mack",
     "author_email": "mmack@paloaltonetworks.com",
-    "description": "Sample MineMeld node extension for mining FireEye's Bluecoat Integration (SWP)",
+    "description": "Sample MineMeld node extension for mining FireEye's Bluecoat Integration (SWP) into Minemeld",
     "entry_points": {
         "minemeld_nodes": {
             "fireeyeminer.urllistMiner": "fireeyeminer.node:urllistMiner"
