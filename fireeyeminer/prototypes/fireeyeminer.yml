@@ -1,0 +1,27 @@
+url: https://github.com/PaloAltoNetworks/fireeye-miner
+description: >
+  Sample extension for MineMeld.
+
+prototypes:
+  urllistMiner:
+    author: Michael Mack
+    class: fireeyeminer.urllistMiner
+    development_status: EXPERIMENTAL
+    node_type: miner
+    indicator_types:
+      - URL
+    tags:
+      - extension
+      - fireeyeminer
+    description: >
+      test prototype for fireeyeminer.Miner, mines malicious URLs from FireEye NX.
+    config:
+      fireeye_nx: 10.3.0.10
+      # age out of indicators
+      # disabled, removed when they disappear from the channel
+      age_out:
+        sudden_death: true
+        default: null
+      # flag indicators with share level green
+      attributes:
+        share_level: green
