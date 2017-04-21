@@ -1,6 +1,6 @@
 url: https://github.com/edfauler/fireeye-miner
 description: >
-  Prototype for fireeyeminer.urllistMiner, mines malicious & callback URLs from FireEye NX or CMS.
+  Extension for Palo Alto Networks Minemeld to parse FireEye's Bluecoat integration feed (urllist.txt).
 
 prototypes:
   urllistMiner:
@@ -14,9 +14,9 @@ prototypes:
       - extension
       - fireeyeminer
     description: >
-      Prototype for fireeyeminer.urllistMiner, mines malicious & callback URLs from FireEye NX or CMS.
+      Prototype for fireeyeminer.urllistMiner, mines malicious and/or callback URLs from FireEye NX or CMS.
     config:
-      fireeye_fqdn: fireeye-nx.lan.local
+      fireeye_fqdn: '<fireeye-nx.lan.local>'
       # age out of indicators
       # disabled, removed when they disappear from the channel
       age_out:
@@ -25,5 +25,7 @@ prototypes:
       # flag indicators with share level green
       attributes:
         share_level: green
-        enable_callback_urls: 1
-        enable_malicious_urls: 1
+        output_type: 2
+        # 0 = malicious URLs only
+        # 1 = callback URLs only
+        # 2 = both

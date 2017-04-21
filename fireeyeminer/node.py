@@ -14,6 +14,8 @@ class urllistMiner(BasePollerFT):
         self.polling_timeout = self.config.get('polling_timeout', 20)
         self.verify_cert = self.config.get('verify_cert', True)
 
+        self.output_type = self.config.get('output_type', 2)
+
         self.fireeye_fqdn = self.config.get('fireeye_fqdn', None)
         if self.fireeye_fqdn is None:
             raise ValueError('%s - Fireeye NX/CMS URL is required' % self.name)
@@ -23,8 +25,7 @@ class urllistMiner(BasePollerFT):
         )
 
     def _build_iterator(self, item):
-        callbacks = []
-        malicious = []
+        result = []
         malicious_sw = 0
         callbacks_sw = 0
         # builds the request and retrieves the page
@@ -54,19 +55,19 @@ class urllistMiner(BasePollerFT):
             if "End" in line:
                 malicious_sw = 0
                 callbacks_sw = 0
-            if malicious_sw == 1:
+            if ( (malicious_sw == 1) & ( (self.output_type == "0") | (self.output_type == "2") ) ):
                 value = line.split("=")
                 if value[0].strip() == "url":
-                    malicious.append(value[1])
-            if callbacks_sw == 1:
+                    result.append(value[1])
+            if ( (callbacks_sw == 1) & ( (self.output_type == "1") | (self.output_type == "2") ) ):
                 value = line.split("=")
                 if value[0].strip() == "url":
-                    callbacks.append(value[1])
+                    result.append(value[1])
             if "define condition FireEye_Callbacks" in line:
                 callbacks_sw = 1
             if "define condition FireEye_MaliciousURL" in line:
                 malicious_sw = 1
-        return callbacks
+        return result
 
     def _process_item(self, item):
         mycallback = item
