@@ -11,7 +11,7 @@ extract those.
 
 If there is only a standalone FireEye NX open the Fireeye CLI and enter the following commands:
 
-'''
+```
  FireEye-NX > ena
  FireEye-NX # conf t
  FireEye-NX(config) # swg scan enable
@@ -20,20 +20,21 @@ If there is only a standalone FireEye NX open the Fireeye CLI and enter the foll
  FireEye-NX(config) # wr mem
  Saving configuration file ... Done!
  FireEye-NX(config) #
-'''
+```
 After SWG scan is enabled check if http://<FQDN of your Fireeye NX/urllist.txt is available.
 
 ## PreConfiguration using FireEye CMS
 
 In case there a multiple FireEye NX appliances. Enable SWG scan as explained above on every Fireeye NX and then perform the same steps on the CMS as well.
-'''
+
+```
  FireEye-CMS > ena
  FireEye-CMS # conf t
  FireEye-CMS(config) # swg scan enable
  FireEye-CMS(config) # wr mem
  Saving configuration file ... Done!
  FireEye-CMS(config) #
-'''
+```
 
 After SWG scan is enabled check if http://<FQDN of your Fireeye CMS/urllist.txt is available
 
