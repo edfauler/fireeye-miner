@@ -15,7 +15,10 @@ prototypes:
       - fireeyeminer
     description: >
       Prototype for fireeyeminer.urllistMiner, mines malicious and/or callback URLs from FireEye NX or CMS.
+      Adjust  the fireeye_fqdn with your fireeye nx or cms system and set the output level.
+      (0 = Malicious URLs only, 1 = Callback URLs only, 2 = Both )
     config:
+      # modify with your fireeye nx fqdn
       fireeye_fqdn: '<fireeye-nx.lan.local>'
       # age out of indicators
       # disabled, removed when they disappear from the channel

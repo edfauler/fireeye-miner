@@ -14,8 +14,10 @@ class urllistMiner(BasePollerFT):
         self.polling_timeout = self.config.get('polling_timeout', 20)
         self.verify_cert = self.config.get('verify_cert', True)
 
+        # Read the output_type from the prototype
         self.output_type = self.config.get('output_type', 2)
 
+        # Check if the fqdn is defined
         self.fireeye_fqdn = self.config.get('fireeye_fqdn', None)
         if self.fireeye_fqdn is None:
             raise ValueError('%s - Fireeye NX/CMS URL is required' % self.name)
@@ -25,9 +27,12 @@ class urllistMiner(BasePollerFT):
         )
 
     def _build_iterator(self, item):
+
+        # init helpers
         result = []
         malicious_sw = 0
         callbacks_sw = 0
+
         # builds the request and retrieves the page
         rkwargs = dict(
             stream=False,
