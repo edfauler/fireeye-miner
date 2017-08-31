@@ -28,7 +28,7 @@ prototypes:
       # flag indicators with share level green
       attributes:
         share_level: green
-        output_type: 2
-        # 0 = malicious URLs only
-        # 1 = callback URLs only
-        # 2 = both
+      output_type: "2"
+      # 0 = malicious URLs only
+      # 1 = callback URLs only
+      # 2 = both
