@@ -15,7 +15,7 @@ class urllistMiner(BasePollerFT):
         self.verify_cert = self.config.get('verify_cert', True)
 
         # Read the output_type from the prototype
-        self.output_type = self.config.get('output_type', 2)
+        self.output_type = self.config.get('output_type', '2')
 
         # Check if the fqdn is defined
         self.fireeye_fqdn = self.config.get('fireeye_fqdn', None)
